@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+    <head>
+        <title>Chaos Caterpillar</title>
+        <style>
+            :root {
+                --colour1: #33CCCC;
+                --colour2: #33CC36;
+                --colour3: #B8CC33;
+                --colour4: #FCCA00;
+            }
+            html {
+                height: 100%;
+            }
+            p {
+                display: flex;
+                text-align: center;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            body{ 
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0%;
+                height: 100%;
+                animation: randomBg1 5s infinite linear;
+            }
+
+            @keyframes randomBg1 {
+                0%   { background: var(--colour1); }
+                50%  { background: var(--colour2); }    
+                100%   { background: var(--colour3); }
+            }
+
+            @keyframes randomBg2 {
+                0%   { background: var(--colour3); }
+                50%  { background: var(--colour4); }    
+                100%   { background: var(--colour1); }
+            }
+        </style>
+    </head>
+
+    <body>
+        <p>
+            oops. there isn't much here<br>
+            go look somewhere else?
+        </p>
+    </body>
+
+    <script>
+        var colour = true;
+        var intervalId = window.setInterval(function() {
+            if (colour)
+            {
+                document.documentElement.style.setProperty('--colour4', '#'+(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0'));
+                document.documentElement.style.setProperty('--colour1', '#'+(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0'));
+                document.getElementsByTagName("body")[0].style.animationName = "randomBg2";
+            }
+            else
+            {
+                document.documentElement.style.setProperty('--colour2', '#'+(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0'));
+                document.documentElement.style.setProperty('--colour3', '#'+(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0'));
+                document.getElementsByTagName("body")[0].style.animationName = "randomBg1";
+            }
+            colour = !colour;
+        }, 5000);
+    </script>
+
+</html>
